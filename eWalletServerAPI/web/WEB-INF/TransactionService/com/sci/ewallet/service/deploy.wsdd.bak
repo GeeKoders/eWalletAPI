@@ -1,0 +1,109 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from TransactionService WSDL service -->
+
+  <service name="Transaction" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.ewallet.sci.com"/>
+      <parameter name="wsdlServiceElement" value="TransactionService"/>
+      <parameter name="schemaQualified" value="http://bean.ewallet.sci.com,http://service.ewallet.sci.com"/>
+      <parameter name="wsdlServicePort" value="Transaction"/>
+      <parameter name="className" value="com.sci.ewallet.service.TransactionSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="Transaction"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="list" qname="operNS:list" xmlns:operNS="http://service.ewallet.sci.com" returnQName="retNS:listReturn" xmlns:retNS="http://service.ewallet.sci.com" returnType="rtns:TransactionListBean" xmlns:rtns="http://bean.ewallet.sci.com" soapAction="" >
+        <parameter qname="pns:source_id" xmlns:pns="http://service.ewallet.sci.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="create" qname="operNS:create" xmlns:operNS="http://service.ewallet.sci.com" returnQName="retNS:createReturn" xmlns:retNS="http://service.ewallet.sci.com" returnType="rtns:TransactionCreateBean" xmlns:rtns="http://bean.ewallet.sci.com" soapAction="" >
+        <parameter qname="pns:source_id" xmlns:pns="http://service.ewallet.sci.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:source_count" xmlns:pns="http://service.ewallet.sci.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:tpaytype" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:price" xmlns:pns="http://service.ewallet.sci.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="scanUpdateInfo" qname="operNS:scanUpdateInfo" xmlns:operNS="http://service.ewallet.sci.com" returnQName="retNS:scanUpdateInfoReturn" xmlns:retNS="http://service.ewallet.sci.com" returnType="rtns:TransactionStatusBean" xmlns:rtns="http://bean.ewallet.sci.com" soapAction="" >
+        <parameter qname="pns:source_id" xmlns:pns="http://service.ewallet.sci.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:source_count" xmlns:pns="http://service.ewallet.sci.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:dest_id" xmlns:pns="http://service.ewallet.sci.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:dest_count" xmlns:pns="http://service.ewallet.sci.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:tpaytype" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:price" xmlns:pns="http://service.ewallet.sci.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:tx_id" xmlns:pns="http://service.ewallet.sci.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:issuer" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:serial_no" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:card_id" xmlns:pns="http://service.ewallet.sci.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:card_no" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="listByTime" qname="operNS:listByTime" xmlns:operNS="http://service.ewallet.sci.com" returnQName="retNS:listByTimeReturn" xmlns:retNS="http://service.ewallet.sci.com" returnType="rtns:TransactionListBean" xmlns:rtns="http://bean.ewallet.sci.com" soapAction="" >
+        <parameter qname="pns:source_id" xmlns:pns="http://service.ewallet.sci.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:time_start" xmlns:pns="http://service.ewallet.sci.com" type="tns:dateTime" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:time_end" xmlns:pns="http://service.ewallet.sci.com" type="tns:dateTime" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="listenStatus" qname="operNS:listenStatus" xmlns:operNS="http://service.ewallet.sci.com" returnQName="retNS:listenStatusReturn" xmlns:retNS="http://service.ewallet.sci.com" returnType="rtns:TransactionStatusBean" xmlns:rtns="http://bean.ewallet.sci.com" soapAction="" >
+        <parameter qname="pns:tx_id" xmlns:pns="http://service.ewallet.sci.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="updateInfo" qname="operNS:updateInfo" xmlns:operNS="http://service.ewallet.sci.com" returnQName="retNS:updateInfoReturn" xmlns:retNS="http://service.ewallet.sci.com" returnType="rtns:TransactionStatusBean" xmlns:rtns="http://bean.ewallet.sci.com" soapAction="" >
+        <parameter qname="pns:tx_id" xmlns:pns="http://service.ewallet.sci.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:source_id" xmlns:pns="http://service.ewallet.sci.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:tpaytype" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:price" xmlns:pns="http://service.ewallet.sci.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="listByTime scanUpdateInfo list listenStatus create updateInfo"/>
+
+      <typeMapping
+        xmlns:ns="http://bean.ewallet.sci.com"
+        qname="ns:StatusBean"
+        type="java:com.sci.ewallet.bean.StatusBean"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://bean.ewallet.sci.com"
+        qname="ns:TransactionBean"
+        type="java:com.sci.ewallet.bean.TransactionBean"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://bean.ewallet.sci.com"
+        qname="ns:TransactionCreateBean"
+        type="java:com.sci.ewallet.bean.TransactionCreateBean"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://service.ewallet.sci.com"
+        qname="ns:ArrayOf_tns1_TransactionBean"
+        type="java:com.sci.ewallet.bean.TransactionBean[]"
+        innerType="cmp-ns:TransactionBean" xmlns:cmp-ns="http://bean.ewallet.sci.com"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://bean.ewallet.sci.com"
+        qname="ns:TransactionListBean"
+        type="java:com.sci.ewallet.bean.TransactionListBean"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://bean.ewallet.sci.com"
+        qname="ns:TransactionStatusBean"
+        type="java:com.sci.ewallet.bean.TransactionStatusBean"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

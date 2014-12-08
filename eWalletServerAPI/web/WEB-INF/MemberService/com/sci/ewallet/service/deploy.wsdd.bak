@@ -1,0 +1,81 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from MemberService WSDL service -->
+
+  <service name="Member" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.ewallet.sci.com"/>
+      <parameter name="wsdlServiceElement" value="MemberService"/>
+      <parameter name="schemaQualified" value="http://bean.ewallet.sci.com,http://service.ewallet.sci.com"/>
+      <parameter name="wsdlServicePort" value="Member"/>
+      <parameter name="className" value="com.sci.ewallet.service.MemberSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="Member"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="create" qname="operNS:create" xmlns:operNS="http://service.ewallet.sci.com" returnQName="retNS:createReturn" xmlns:retNS="http://service.ewallet.sci.com" returnType="rtns:MemberCreateBean" xmlns:rtns="http://bean.ewallet.sci.com" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:name" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:mobile" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:email" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:address" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:issuer" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:serial_no" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:mac_address" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="update" qname="operNS:update" xmlns:operNS="http://service.ewallet.sci.com" returnQName="retNS:updateReturn" xmlns:retNS="http://service.ewallet.sci.com" returnType="rtns:StatusBean" xmlns:rtns="http://bean.ewallet.sci.com" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:name" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:mobile" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:address" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="validate" qname="operNS:validate" xmlns:operNS="http://service.ewallet.sci.com" returnQName="retNS:validateReturn" xmlns:retNS="http://service.ewallet.sci.com" returnType="rtns:StatusBean" xmlns:rtns="http://bean.ewallet.sci.com" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:email" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="login" qname="operNS:login" xmlns:operNS="http://service.ewallet.sci.com" returnQName="retNS:loginReturn" xmlns:retNS="http://service.ewallet.sci.com" returnType="rtns:MemberLoginBean" xmlns:rtns="http://bean.ewallet.sci.com" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="updatePassword" qname="operNS:updatePassword" xmlns:operNS="http://service.ewallet.sci.com" returnQName="retNS:updatePasswordReturn" xmlns:retNS="http://service.ewallet.sci.com" returnType="rtns:StatusBean" xmlns:rtns="http://bean.ewallet.sci.com" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:new_password" xmlns:pns="http://service.ewallet.sci.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="update updatePassword login create validate"/>
+
+      <typeMapping
+        xmlns:ns="http://bean.ewallet.sci.com"
+        qname="ns:StatusBean"
+        type="java:com.sci.ewallet.bean.StatusBean"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://bean.ewallet.sci.com"
+        qname="ns:MemberCreateBean"
+        type="java:com.sci.ewallet.bean.MemberCreateBean"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://bean.ewallet.sci.com"
+        qname="ns:MemberLoginBean"
+        type="java:com.sci.ewallet.bean.MemberLoginBean"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

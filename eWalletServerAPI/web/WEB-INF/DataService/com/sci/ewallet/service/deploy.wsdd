@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from DataService WSDL service -->
+
+  <service name="Data" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.ewallet.sci.com"/>
+      <parameter name="wsdlServiceElement" value="DataService"/>
+      <parameter name="schemaQualified" value="http://bean.ewallet.sci.com,http://service.ewallet.sci.com"/>
+      <parameter name="wsdlServicePort" value="Data"/>
+      <parameter name="className" value="com.sci.ewallet.service.Data"/>
+      <parameter name="wsdlPortType" value="Data"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://service.ewallet.sci.com" xmlns:retNS="http://service.ewallet.sci.com" xmlns:rtns="http://bean.ewallet.sci.com" name="create" qname="operNS:create" returnQName="retNS:createReturn" returnType="rtns:DataCreateBean" soapAction="">
+        <parameter xmlns:pns="http://service.ewallet.sci.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:issuer" type="tns:string"/>
+        <parameter xmlns:pns="http://service.ewallet.sci.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:serial_no" type="tns:string"/>
+        <parameter xmlns:pns="http://service.ewallet.sci.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:cert" type="tns:string"/>
+        <parameter xmlns:pns="http://service.ewallet.sci.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:pfx" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="create"/>
+
+      <typeMapping xmlns:ns="http://bean.ewallet.sci.com" qname="ns:StatusBean" type="java:com.sci.ewallet.bean.StatusBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://bean.ewallet.sci.com" qname="ns:DataCreateBean" type="java:com.sci.ewallet.bean.DataCreateBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

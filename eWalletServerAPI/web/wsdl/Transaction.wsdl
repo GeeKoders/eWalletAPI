@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.ewallet.sci.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.ewallet.sci.com" xmlns:intf="http://service.ewallet.sci.com" xmlns:tns1="http://bean.ewallet.sci.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.ewallet.sci.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://bean.ewallet.sci.com"/>
+   <element name="list">
+    <complexType>
+     <sequence>
+      <element name="source_id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="listResponse">
+    <complexType>
+     <sequence>
+      <element name="listReturn" type="tns1:TransactionListBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_tns1_TransactionBean">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:TransactionBean"/>
+    </sequence>
+   </complexType>
+   <element name="create">
+    <complexType>
+     <sequence>
+      <element name="source_id" type="xsd:int"/>
+      <element name="source_count" type="xsd:int"/>
+      <element name="tpaytype" type="xsd:string"/>
+      <element name="price" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="createResponse">
+    <complexType>
+     <sequence>
+      <element name="createReturn" type="tns1:TransactionCreateBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="scanUpdateInfo">
+    <complexType>
+     <sequence>
+      <element name="source_id" type="xsd:int"/>
+      <element name="source_count" type="xsd:int"/>
+      <element name="dest_id" type="xsd:int"/>
+      <element name="dest_count" type="xsd:int"/>
+      <element name="tpaytype" type="xsd:string"/>
+      <element name="price" type="xsd:int"/>
+      <element name="tx_id" type="xsd:int"/>
+      <element name="issuer" type="xsd:string"/>
+      <element name="serial_no" type="xsd:string"/>
+      <element name="card_id" type="xsd:int"/>
+      <element name="card_no" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="scanUpdateInfoResponse">
+    <complexType>
+     <sequence>
+      <element name="scanUpdateInfoReturn" type="tns1:TransactionStatusBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="listByTime">
+    <complexType>
+     <sequence>
+      <element name="source_id" type="xsd:int"/>
+      <element name="time_start" type="xsd:dateTime"/>
+      <element name="time_end" type="xsd:dateTime"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="listByTimeResponse">
+    <complexType>
+     <sequence>
+      <element name="listByTimeReturn" type="tns1:TransactionListBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="listenStatus">
+    <complexType>
+     <sequence>
+      <element name="tx_id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="listenStatusResponse">
+    <complexType>
+     <sequence>
+      <element name="listenStatusReturn" type="tns1:TransactionStatusBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateInfo">
+    <complexType>
+     <sequence>
+      <element name="tx_id" type="xsd:int"/>
+      <element name="source_id" type="xsd:int"/>
+      <element name="tpaytype" type="xsd:string"/>
+      <element name="price" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateInfoResponse">
+    <complexType>
+     <sequence>
+      <element name="updateInfoReturn" type="tns1:TransactionStatusBean"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://bean.ewallet.sci.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://service.ewallet.sci.com"/>
+   <complexType name="StatusBean">
+    <sequence>
+     <element name="status" type="xsd:int"/>
+     <element name="message" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="TransactionBean">
+    <sequence>
+     <element name="source_id" type="xsd:int"/>
+     <element name="dest_id" type="xsd:int"/>
+     <element name="price" type="xsd:int"/>
+     <element name="issuer" nillable="true" type="xsd:string"/>
+     <element name="serial_no" nillable="true" type="xsd:string"/>
+     <element name="card_id" nillable="true" type="xsd:string"/>
+     <element name="update_date" nillable="true" type="xsd:dateTime"/>
+    </sequence>
+   </complexType>
+   <complexType name="TransactionListBean">
+    <complexContent>
+     <extension base="tns1:StatusBean">
+      <sequence>
+       <element name="list" nillable="true" type="impl:ArrayOf_tns1_TransactionBean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="TransactionCreateBean">
+    <complexContent>
+     <extension base="tns1:StatusBean">
+      <sequence>
+       <element name="tx_id" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="TransactionStatusBean">
+    <complexContent>
+     <extension base="tns1:StatusBean">
+      <sequence>
+       <element name="tstatus" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="listenStatusRequest">
+
+      <wsdl:part element="impl:listenStatus" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listenStatusResponse">
+
+      <wsdl:part element="impl:listenStatusResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listByTimeRequest">
+
+      <wsdl:part element="impl:listByTime" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateInfoRequest">
+
+      <wsdl:part element="impl:updateInfo" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listResponse">
+
+      <wsdl:part element="impl:listResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createResponse">
+
+      <wsdl:part element="impl:createResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listByTimeResponse">
+
+      <wsdl:part element="impl:listByTimeResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createRequest">
+
+      <wsdl:part element="impl:create" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateInfoResponse">
+
+      <wsdl:part element="impl:updateInfoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="scanUpdateInfoRequest">
+
+      <wsdl:part element="impl:scanUpdateInfo" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="scanUpdateInfoResponse">
+
+      <wsdl:part element="impl:scanUpdateInfoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listRequest">
+
+      <wsdl:part element="impl:list" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Transaction">
+
+      <wsdl:operation name="list">
+
+         <wsdl:input message="impl:listRequest" name="listRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:listResponse" name="listResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="create">
+
+         <wsdl:input message="impl:createRequest" name="createRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:createResponse" name="createResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="scanUpdateInfo">
+
+         <wsdl:input message="impl:scanUpdateInfoRequest" name="scanUpdateInfoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:scanUpdateInfoResponse" name="scanUpdateInfoResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listByTime">
+
+         <wsdl:input message="impl:listByTimeRequest" name="listByTimeRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:listByTimeResponse" name="listByTimeResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listenStatus">
+
+         <wsdl:input message="impl:listenStatusRequest" name="listenStatusRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:listenStatusResponse" name="listenStatusResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateInfo">
+
+         <wsdl:input message="impl:updateInfoRequest" name="updateInfoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:updateInfoResponse" name="updateInfoResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="TransactionSoapBinding" type="impl:Transaction">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="list">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="listRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="listResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="create">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="createRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="scanUpdateInfo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="scanUpdateInfoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="scanUpdateInfoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listByTime">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="listByTimeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="listByTimeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listenStatus">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="listenStatusRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="listenStatusResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateInfo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="updateInfoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="updateInfoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="TransactionService">
+
+      <wsdl:port binding="impl:TransactionSoapBinding" name="Transaction">
+
+         <wsdlsoap:address location="http://localhost:8080/citygo/services/Transaction"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

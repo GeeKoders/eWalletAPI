@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Contain>
+  <DatabaseList>
+    <Database>
+      <Name>EWallet_T</Name>
+      <DriverString>com.mysql.jdbc.Driver</DriverString>
+      <ConnectinString>jdbc:mysql://106.187.38.21:3306/ewallet?autoReconnect=true</ConnectinString>
+      <UserId>tintin</UserId>
+      <UserPassword>tintin</UserPassword>
+    </Database>
+    <Database>
+      <Name>EWallet</Name>
+      <DriverString>com.mysql.jdbc.Driver</DriverString>
+      <ConnectinString>jdbc:mysql://192.168.2.31:3306/ewallet?autoReconnect=true</ConnectinString>
+      <UserId>tintin</UserId>
+      <UserPassword>tintin</UserPassword>
+    </Database>
+    <Database>
+      <Name>Demo_T</Name>
+      <DriverString>com.mysql.jdbc.Driver</DriverString>
+      <ConnectinString>jdbc:mysql://106.187.38.21:3306/Demo?autoReconnect=true</ConnectinString>
+      <UserId>tintin</UserId>
+      <UserPassword>tintin</UserPassword>
+    </Database>
+    <Database>
+      <Name>Demo</Name>
+      <DriverString>com.mysql.jdbc.Driver</DriverString>
+      <ConnectinString>jdbc:mysql://192.168.2.31:3306/Demo?autoReconnect=true</ConnectinString>
+      <UserId>tintin</UserId>
+      <UserPassword>tintin</UserPassword>
+    </Database>
+  </DatabaseList>
+</Contain>

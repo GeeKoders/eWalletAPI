@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from StoreService WSDL service -->
+
+  <service name="Store" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.ewallet.sci.com"/>
+      <parameter name="wsdlServiceElement" value="StoreService"/>
+      <parameter name="schemaQualified" value="http://bean.ewallet.sci.com,http://service.ewallet.sci.com"/>
+      <parameter name="wsdlServicePort" value="Store"/>
+      <parameter name="className" value="com.sci.ewallet.service.Store"/>
+      <parameter name="wsdlPortType" value="Store"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://service.ewallet.sci.com" xmlns:retNS="http://service.ewallet.sci.com" xmlns:rtns="http://bean.ewallet.sci.com" name="create" qname="operNS:create" returnQName="retNS:createReturn" returnType="rtns:StatusBean" soapAction="">
+        <parameter xmlns:pns="http://service.ewallet.sci.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:name" type="tns:string"/>
+        <parameter xmlns:pns="http://service.ewallet.sci.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:password" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://service.ewallet.sci.com" xmlns:retNS="http://service.ewallet.sci.com" xmlns:rtns="http://bean.ewallet.sci.com" name="login" qname="operNS:login" returnQName="retNS:loginReturn" returnType="rtns:StoreLoginBean" soapAction="">
+        <parameter xmlns:pns="http://service.ewallet.sci.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:name" type="tns:string"/>
+        <parameter xmlns:pns="http://service.ewallet.sci.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:password" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="login create"/>
+
+      <typeMapping xmlns:ns="http://bean.ewallet.sci.com" qname="ns:StatusBean" type="java:com.sci.ewallet.bean.StatusBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://bean.ewallet.sci.com" qname="ns:StoreLoginBean" type="java:com.sci.ewallet.bean.StoreLoginBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

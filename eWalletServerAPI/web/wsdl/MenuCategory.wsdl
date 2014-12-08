@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.ewallet.sci.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.ewallet.sci.com" xmlns:intf="http://service.ewallet.sci.com" xmlns:tns1="http://bean.ewallet.sci.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.ewallet.sci.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://bean.ewallet.sci.com"/>
+   <element name="list">
+    <complexType/>
+   </element>
+   <element name="listResponse">
+    <complexType>
+     <sequence>
+      <element name="listReturn" type="tns1:MenuCategoryListBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_tns1_MenuCategoryBean">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:MenuCategoryBean"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://bean.ewallet.sci.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://service.ewallet.sci.com"/>
+   <complexType name="StatusBean">
+    <sequence>
+     <element name="status" type="xsd:int"/>
+     <element name="message" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="MenuCategoryBean">
+    <sequence>
+     <element name="id" type="xsd:int"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="MenuCategoryListBean">
+    <complexContent>
+     <extension base="tns1:StatusBean">
+      <sequence>
+       <element name="list" nillable="true" type="impl:ArrayOf_tns1_MenuCategoryBean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="listResponse">
+
+      <wsdl:part element="impl:listResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listRequest">
+
+      <wsdl:part element="impl:list" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="MenuCategory">
+
+      <wsdl:operation name="list">
+
+         <wsdl:input message="impl:listRequest" name="listRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:listResponse" name="listResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="MenuCategorySoapBinding" type="impl:MenuCategory">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="list">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="listRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="listResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="MenuCategoryService">
+
+      <wsdl:port binding="impl:MenuCategorySoapBinding" name="MenuCategory">
+
+         <wsdlsoap:address location="http://localhost:8080/citygo/services/MenuCategory"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

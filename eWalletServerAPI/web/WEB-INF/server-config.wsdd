@@ -1,0 +1,330 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="D:\Code\Workspace\mPos\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\SiteEWallet\WEB-INF\attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:service name="Data" provider="java:RPC" style="wrapped" use="literal">
+  <ns3:operation name="create" qname="ns1:create" returnQName="ns1:createReturn" returnType="ns2:DataCreateBean" soapAction="" xmlns:ns1="http://service.ewallet.sci.com" xmlns:ns2="http://bean.ewallet.sci.com" xmlns:ns3="http://xml.apache.org/axis/wsdd/">
+   <ns3:parameter qname="ns1:issuer" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns3:parameter qname="ns1:serial_no" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns3:parameter qname="ns1:cert" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns3:parameter qname="ns1:pfx" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns3:operation>
+  <ns1:parameter name="sendMultiRefs" value="false"/>
+  <ns1:parameter name="wsdlServicePort" value="Data"/>
+  <ns1:parameter name="schemaQualified" value="http://bean.ewallet.sci.com,http://service.ewallet.sci.com"/>
+  <ns1:parameter name="className" value="com.sci.ewallet.service.Data"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="allowedMethods" value="create"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://service.ewallet.sci.com"/>
+  <ns1:parameter name="wsdlServiceElement" value="DataService"/>
+  <ns1:parameter name="wsdlPortType" value="Data"/>
+  <ns1:parameter name="sendXsiTypes" value="false"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns3:StatusBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.StatusBean" xmlns:ns3="http://bean.ewallet.sci.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns4:DataCreateBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.DataCreateBean" xmlns:ns4="http://bean.ewallet.sci.com"/>
+ </ns1:service>
+ <ns1:service name="Member" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="create" qname="ns5:create" returnQName="ns5:createReturn" returnType="ns6:MemberCreateBean" soapAction="" xmlns:ns5="http://service.ewallet.sci.com" xmlns:ns6="http://bean.ewallet.sci.com">
+   <ns1:parameter qname="ns5:username" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns5:name" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns5:password" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns5:mobile" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns5:email" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns5:address" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns5:issuer" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns5:serial_no" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns5:mac_address" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="update" qname="ns7:update" returnQName="ns7:updateReturn" returnType="ns8:StatusBean" soapAction="" xmlns:ns7="http://service.ewallet.sci.com" xmlns:ns8="http://bean.ewallet.sci.com">
+   <ns1:parameter qname="ns7:username" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns7:password" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns7:name" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns7:mobile" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns7:address" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="validate" qname="ns9:validate" returnQName="ns9:validateReturn" returnType="ns10:StatusBean" soapAction="" xmlns:ns10="http://bean.ewallet.sci.com" xmlns:ns9="http://service.ewallet.sci.com">
+   <ns1:parameter qname="ns9:username" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns9:email" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="login" qname="ns11:login" returnQName="ns11:loginReturn" returnType="ns12:MemberLoginBean" soapAction="" xmlns:ns11="http://service.ewallet.sci.com" xmlns:ns12="http://bean.ewallet.sci.com">
+   <ns1:parameter qname="ns11:username" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns11:password" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="updatePassword" qname="ns13:updatePassword" returnQName="ns13:updatePasswordReturn" returnType="ns14:StatusBean" soapAction="" xmlns:ns13="http://service.ewallet.sci.com" xmlns:ns14="http://bean.ewallet.sci.com">
+   <ns1:parameter qname="ns13:username" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns13:password" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns13:new_password" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="sendMultiRefs" value="false"/>
+  <ns1:parameter name="wsdlServicePort" value="Member"/>
+  <ns1:parameter name="schemaQualified" value="http://bean.ewallet.sci.com,http://service.ewallet.sci.com"/>
+  <ns1:parameter name="className" value="com.sci.ewallet.service.Member"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="allowedMethods" value="update updatePassword login create validate"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://service.ewallet.sci.com"/>
+  <ns1:parameter name="wsdlServiceElement" value="MemberService"/>
+  <ns1:parameter name="wsdlPortType" value="Member"/>
+  <ns1:parameter name="sendXsiTypes" value="false"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns15:StatusBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.StatusBean" xmlns:ns15="http://bean.ewallet.sci.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns16:MemberCreateBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.MemberCreateBean" xmlns:ns16="http://bean.ewallet.sci.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns17:MemberLoginBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.MemberLoginBean" xmlns:ns17="http://bean.ewallet.sci.com"/>
+ </ns1:service>
+ <ns1:service name="Transaction" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="list" qname="ns18:list" returnQName="ns18:listReturn" returnType="ns19:TransactionListBean" soapAction="" xmlns:ns18="http://service.ewallet.sci.com" xmlns:ns19="http://bean.ewallet.sci.com">
+   <ns1:parameter qname="ns18:source_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="create" qname="ns20:create" returnQName="ns20:createReturn" returnType="ns21:TransactionCreateBean" soapAction="" xmlns:ns20="http://service.ewallet.sci.com" xmlns:ns21="http://bean.ewallet.sci.com">
+   <ns1:parameter qname="ns20:source_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns20:source_count" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns20:tpaytype" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns20:price" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="scanUpdateInfo" qname="ns22:scanUpdateInfo" returnQName="ns22:scanUpdateInfoReturn" returnType="ns23:TransactionStatusBean" soapAction="" xmlns:ns22="http://service.ewallet.sci.com" xmlns:ns23="http://bean.ewallet.sci.com">
+   <ns1:parameter qname="ns22:source_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns22:source_count" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns22:dest_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns22:dest_count" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns22:tpaytype" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns22:price" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns22:tx_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns22:issuer" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns22:serial_no" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns22:card_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns22:card_no" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="listByTime" qname="ns24:listByTime" returnQName="ns24:listByTimeReturn" returnType="ns25:TransactionListBean" soapAction="" xmlns:ns24="http://service.ewallet.sci.com" xmlns:ns25="http://bean.ewallet.sci.com">
+   <ns1:parameter qname="ns24:source_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns24:time_start" type="xsd:dateTime" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns24:time_end" type="xsd:dateTime" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="listenStatus" qname="ns26:listenStatus" returnQName="ns26:listenStatusReturn" returnType="ns27:TransactionStatusBean" soapAction="" xmlns:ns26="http://service.ewallet.sci.com" xmlns:ns27="http://bean.ewallet.sci.com">
+   <ns1:parameter qname="ns26:tx_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="updateInfo" qname="ns28:updateInfo" returnQName="ns28:updateInfoReturn" returnType="ns29:TransactionStatusBean" soapAction="" xmlns:ns28="http://service.ewallet.sci.com" xmlns:ns29="http://bean.ewallet.sci.com">
+   <ns1:parameter qname="ns28:tx_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns28:source_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns28:tpaytype" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns28:price" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="sendMultiRefs" value="false"/>
+  <ns1:parameter name="wsdlServicePort" value="Transaction"/>
+  <ns1:parameter name="schemaQualified" value="http://bean.ewallet.sci.com,http://service.ewallet.sci.com"/>
+  <ns1:parameter name="className" value="com.sci.ewallet.service.Transaction"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="allowedMethods" value="listByTime scanUpdateInfo list listenStatus create updateInfo"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://service.ewallet.sci.com"/>
+  <ns1:parameter name="wsdlServiceElement" value="TransactionService"/>
+  <ns1:parameter name="wsdlPortType" value="Transaction"/>
+  <ns1:parameter name="sendXsiTypes" value="false"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns30:StatusBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.StatusBean" xmlns:ns30="http://bean.ewallet.sci.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns31:TransactionBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.TransactionBean" xmlns:ns31="http://bean.ewallet.sci.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns32:TransactionCreateBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.TransactionCreateBean" xmlns:ns32="http://bean.ewallet.sci.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns33:TransactionListBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.TransactionListBean" xmlns:ns33="http://bean.ewallet.sci.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns34:TransactionStatusBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.TransactionStatusBean" xmlns:ns34="http://bean.ewallet.sci.com"/>
+  <ns1:arrayMapping innerType="ns36:TransactionBean" languageSpecificType="java:com.sci.ewallet.bean.TransactionBean[]" qname="ns35:ArrayOf_tns1_TransactionBean" xmlns:ns35="http://service.ewallet.sci.com" xmlns:ns36="http://bean.ewallet.sci.com"/>
+ </ns1:service>
+ <ns1:service name="Scan" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="create" qname="ns37:create" returnQName="ns37:createReturn" returnType="ns38:ScanCreateBean" soapAction="" xmlns:ns37="http://service.ewallet.sci.com" xmlns:ns38="http://bean.ewallet.sci.com">
+   <ns1:parameter qname="ns37:source_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns37:source_count" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns37:dest_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns37:dest_count" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns37:type" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns37:price" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="sendMultiRefs" value="false"/>
+  <ns1:parameter name="wsdlServicePort" value="Scan"/>
+  <ns1:parameter name="schemaQualified" value="http://bean.ewallet.sci.com,http://service.ewallet.sci.com"/>
+  <ns1:parameter name="className" value="com.sci.ewallet.service.Scan"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="allowedMethods" value="create"/>
+  <ns1:parameter name="wsdlPortType" value="Scan"/>
+  <ns1:parameter name="wsdlServiceElement" value="ScanService"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://service.ewallet.sci.com"/>
+  <ns1:parameter name="sendXsiTypes" value="false"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns39:StatusBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.StatusBean" xmlns:ns39="http://bean.ewallet.sci.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns40:ScanCreateBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.ScanCreateBean" xmlns:ns40="http://bean.ewallet.sci.com"/>
+ </ns1:service>
+ <ns1:service name="MenuName" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="list" qname="ns41:list" returnQName="ns41:listReturn" returnType="ns42:MenuNameListBean" soapAction="" xmlns:ns41="http://service.ewallet.sci.com" xmlns:ns42="http://bean.ewallet.sci.com"/>
+  <ns1:parameter name="sendMultiRefs" value="false"/>
+  <ns1:parameter name="wsdlServicePort" value="MenuName"/>
+  <ns1:parameter name="schemaQualified" value="http://bean.ewallet.sci.com,http://service.ewallet.sci.com"/>
+  <ns1:parameter name="className" value="com.sci.ewallet.service.MenuName"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="allowedMethods" value="list"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://service.ewallet.sci.com"/>
+  <ns1:parameter name="wsdlServiceElement" value="MenuNameService"/>
+  <ns1:parameter name="wsdlPortType" value="MenuName"/>
+  <ns1:parameter name="sendXsiTypes" value="false"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns43:StatusBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.StatusBean" xmlns:ns43="http://bean.ewallet.sci.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns44:MenuNameBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.MenuNameBean" xmlns:ns44="http://bean.ewallet.sci.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns45:MenuNameListBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.MenuNameListBean" xmlns:ns45="http://bean.ewallet.sci.com"/>
+  <ns1:arrayMapping innerType="ns47:MenuNameBean" languageSpecificType="java:com.sci.ewallet.bean.MenuNameBean[]" qname="ns46:ArrayOf_tns1_MenuNameBean" xmlns:ns46="http://service.ewallet.sci.com" xmlns:ns47="http://bean.ewallet.sci.com"/>
+ </ns1:service>
+ <ns1:service name="Store" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="create" qname="ns48:create" returnQName="ns48:createReturn" returnType="ns49:StatusBean" soapAction="" xmlns:ns48="http://service.ewallet.sci.com" xmlns:ns49="http://bean.ewallet.sci.com">
+   <ns1:parameter qname="ns48:name" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns48:password" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="login" qname="ns50:login" returnQName="ns50:loginReturn" returnType="ns51:StoreLoginBean" soapAction="" xmlns:ns50="http://service.ewallet.sci.com" xmlns:ns51="http://bean.ewallet.sci.com">
+   <ns1:parameter qname="ns50:name" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns50:password" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="sendMultiRefs" value="false"/>
+  <ns1:parameter name="wsdlServicePort" value="Store"/>
+  <ns1:parameter name="schemaQualified" value="http://bean.ewallet.sci.com,http://service.ewallet.sci.com"/>
+  <ns1:parameter name="className" value="com.sci.ewallet.service.Store"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="allowedMethods" value="login create"/>
+  <ns1:parameter name="wsdlPortType" value="Store"/>
+  <ns1:parameter name="wsdlServiceElement" value="StoreService"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://service.ewallet.sci.com"/>
+  <ns1:parameter name="sendXsiTypes" value="false"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns52:StatusBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.StatusBean" xmlns:ns52="http://bean.ewallet.sci.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns53:StoreLoginBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.StoreLoginBean" xmlns:ns53="http://bean.ewallet.sci.com"/>
+ </ns1:service>
+ <ns1:service name="MenuCategory" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="list" qname="ns54:list" returnQName="ns54:listReturn" returnType="ns55:MenuCategoryListBean" soapAction="" xmlns:ns54="http://service.ewallet.sci.com" xmlns:ns55="http://bean.ewallet.sci.com"/>
+  <ns1:parameter name="sendMultiRefs" value="false"/>
+  <ns1:parameter name="wsdlServicePort" value="MenuCategory"/>
+  <ns1:parameter name="schemaQualified" value="http://bean.ewallet.sci.com,http://service.ewallet.sci.com"/>
+  <ns1:parameter name="className" value="com.sci.ewallet.service.MenuCategory"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="allowedMethods" value="list"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://service.ewallet.sci.com"/>
+  <ns1:parameter name="wsdlServiceElement" value="MenuCategoryService"/>
+  <ns1:parameter name="wsdlPortType" value="MenuCategory"/>
+  <ns1:parameter name="sendXsiTypes" value="false"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns56:StatusBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.StatusBean" xmlns:ns56="http://bean.ewallet.sci.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns57:MenuCategoryListBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.MenuCategoryListBean" xmlns:ns57="http://bean.ewallet.sci.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns58:MenuCategoryBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.MenuCategoryBean" xmlns:ns58="http://bean.ewallet.sci.com"/>
+  <ns1:arrayMapping innerType="ns60:MenuCategoryBean" languageSpecificType="java:com.sci.ewallet.bean.MenuCategoryBean[]" qname="ns59:ArrayOf_tns1_MenuCategoryBean" xmlns:ns59="http://service.ewallet.sci.com" xmlns:ns60="http://bean.ewallet.sci.com"/>
+ </ns1:service>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:service name="CreditCard" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="create" qname="ns61:create" returnQName="ns61:createReturn" returnType="ns62:CreditCardCreateBean" soapAction="" xmlns:ns61="http://service.ewallet.sci.com" xmlns:ns62="http://bean.ewallet.sci.com">
+   <ns1:parameter qname="ns61:member_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns61:card_number" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns61:expire_date" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns61:valid_number" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="create"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="CreditCard"/>
+  <ns1:parameter name="className" value="com.sci.ewallet.service.CreditCard"/>
+  <ns1:parameter name="wsdlServicePort" value="CreditCard"/>
+  <ns1:parameter name="schemaQualified" value="http://bean.ewallet.sci.com,http://service.ewallet.sci.com"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://service.ewallet.sci.com"/>
+  <ns1:parameter name="wsdlServiceElement" value="CreditCardService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns63:StatusBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.StatusBean" xmlns:ns63="http://bean.ewallet.sci.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns64:CreditCardCreateBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.CreditCardCreateBean" xmlns:ns64="http://bean.ewallet.sci.com"/>
+ </ns1:service>
+ <ns1:service name="EWallet" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="update" qname="ns65:update" returnQName="ns65:updateReturn" returnType="ns66:StatusBean" soapAction="" xmlns:ns65="http://service.ewallet.sci.com" xmlns:ns66="http://bean.ewallet.sci.com">
+   <ns1:parameter qname="ns65:account" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns65:password" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns65:name" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns65:mobile" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns65:address" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="validate" qname="ns67:validate" returnQName="ns67:validateReturn" returnType="ns68:StatusBean" soapAction="" xmlns:ns67="http://service.ewallet.sci.com" xmlns:ns68="http://bean.ewallet.sci.com">
+   <ns1:parameter qname="ns67:account" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns67:email" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="login" qname="ns69:login" returnQName="ns69:loginReturn" returnType="ns70:EWalletLoginBean" soapAction="" xmlns:ns69="http://service.ewallet.sci.com" xmlns:ns70="http://bean.ewallet.sci.com">
+   <ns1:parameter qname="ns69:account" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns69:password" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="changePassword" qname="ns71:changePassword" returnQName="ns71:changePasswordReturn" returnType="ns72:StatusBean" soapAction="" xmlns:ns71="http://service.ewallet.sci.com" xmlns:ns72="http://bean.ewallet.sci.com">
+   <ns1:parameter qname="ns71:account" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns71:password" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns71:passwordNew" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="rigister" qname="ns73:rigister" returnQName="ns73:rigisterReturn" returnType="ns74:EWalletRigisterBean" soapAction="" xmlns:ns73="http://service.ewallet.sci.com" xmlns:ns74="http://bean.ewallet.sci.com">
+   <ns1:parameter qname="ns73:account" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns73:email" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns73:password" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns73:name" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns73:mobile" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns73:address" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns73:deviceId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="askMailCheck" qname="ns75:askMailCheck" returnQName="ns75:askMailCheckReturn" returnType="ns76:StatusBean" soapAction="" xmlns:ns75="http://service.ewallet.sci.com" xmlns:ns76="http://bean.ewallet.sci.com">
+   <ns1:parameter qname="ns75:account" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns75:password" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="askSMSCheck" qname="ns77:askSMSCheck" returnQName="ns77:askSMSCheckReturn" returnType="ns78:StatusBean" soapAction="" xmlns:ns77="http://service.ewallet.sci.com" xmlns:ns78="http://bean.ewallet.sci.com">
+   <ns1:parameter qname="ns77:account" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns77:mailCode" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="askCert" qname="ns79:askCert" returnQName="ns79:askCertReturn" returnType="ns80:EWalletCertBean" soapAction="" xmlns:ns79="http://service.ewallet.sci.com" xmlns:ns80="http://bean.ewallet.sci.com">
+   <ns1:parameter qname="ns79:account" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns79:password" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns79:pkData" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns79:p10Value" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="askActive" qname="ns81:askActive" returnQName="ns81:askActiveReturn" returnType="ns82:StatusBean" soapAction="" xmlns:ns81="http://service.ewallet.sci.com" xmlns:ns82="http://bean.ewallet.sci.com">
+   <ns1:parameter qname="ns81:account" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns81:password" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns81:smsCode" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="update askCert rigister askSMSCheck askActive login changePassword askMailCheck validate"/>
+  <ns1:parameter name="wsdlPortType" value="EWallet"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://bean.ewallet.sci.com,http://service.ewallet.sci.com"/>
+  <ns1:parameter name="wsdlServicePort" value="EWallet"/>
+  <ns1:parameter name="className" value="com.sci.ewallet.service.EWallet"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://service.ewallet.sci.com"/>
+  <ns1:parameter name="wsdlServiceElement" value="EWalletService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns83:StatusBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.StatusBean" xmlns:ns83="http://bean.ewallet.sci.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns84:EWalletLoginBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.EWalletLoginBean" xmlns:ns84="http://bean.ewallet.sci.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns85:EWalletRigisterBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.EWalletRigisterBean" xmlns:ns85="http://bean.ewallet.sci.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns86:EWalletCertBean" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.sci.ewallet.bean.EWalletCertBean" xmlns:ns86="http://bean.ewallet.sci.com"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>

@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.ewallet.sci.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.ewallet.sci.com" xmlns:intf="http://service.ewallet.sci.com" xmlns:tns1="http://bean.ewallet.sci.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.ewallet.sci.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://bean.ewallet.sci.com"/>
+   <element name="update">
+    <complexType>
+     <sequence>
+      <element name="account" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+      <element name="name" type="xsd:string"/>
+      <element name="mobile" type="xsd:string"/>
+      <element name="address" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateResponse">
+    <complexType>
+     <sequence>
+      <element name="updateReturn" type="tns1:StatusBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validate">
+    <complexType>
+     <sequence>
+      <element name="account" type="xsd:string"/>
+      <element name="email" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validateResponse">
+    <complexType>
+     <sequence>
+      <element name="validateReturn" type="tns1:StatusBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="login">
+    <complexType>
+     <sequence>
+      <element name="account" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="loginResponse">
+    <complexType>
+     <sequence>
+      <element name="loginReturn" type="tns1:EWalletLoginBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="changePassword">
+    <complexType>
+     <sequence>
+      <element name="account" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+      <element name="passwordNew" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="changePasswordResponse">
+    <complexType>
+     <sequence>
+      <element name="changePasswordReturn" type="tns1:StatusBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="rigister">
+    <complexType>
+     <sequence>
+      <element name="account" type="xsd:string"/>
+      <element name="email" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+      <element name="name" type="xsd:string"/>
+      <element name="mobile" type="xsd:string"/>
+      <element name="address" type="xsd:string"/>
+      <element name="deviceId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="rigisterResponse">
+    <complexType>
+     <sequence>
+      <element name="rigisterReturn" type="tns1:EWalletRigisterBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="askMailCheck">
+    <complexType>
+     <sequence>
+      <element name="account" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="askMailCheckResponse">
+    <complexType>
+     <sequence>
+      <element name="askMailCheckReturn" type="tns1:StatusBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="askSMSCheck">
+    <complexType>
+     <sequence>
+      <element name="account" type="xsd:string"/>
+      <element name="mailCode" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="askSMSCheckResponse">
+    <complexType>
+     <sequence>
+      <element name="askSMSCheckReturn" type="tns1:StatusBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="askCert">
+    <complexType>
+     <sequence>
+      <element name="account" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+      <element name="pkData" type="xsd:string"/>
+      <element name="p10Value" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="askCertResponse">
+    <complexType>
+     <sequence>
+      <element name="askCertReturn" type="tns1:EWalletCertBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="askActive">
+    <complexType>
+     <sequence>
+      <element name="account" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+      <element name="smsCode" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="askActiveResponse">
+    <complexType>
+     <sequence>
+      <element name="askActiveReturn" type="tns1:StatusBean"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://bean.ewallet.sci.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="StatusBean">
+    <sequence>
+     <element name="status" type="xsd:int"/>
+     <element name="message" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="EWalletLoginBean">
+    <complexContent>
+     <extension base="tns1:StatusBean">
+      <sequence>
+       <element name="id" type="xsd:int"/>
+       <element name="accountStatus" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="EWalletRigisterBean">
+    <complexContent>
+     <extension base="tns1:StatusBean">
+      <sequence>
+       <element name="id" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="EWalletCertBean">
+    <complexContent>
+     <extension base="tns1:StatusBean">
+      <sequence>
+       <element name="cert" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="changePasswordRequest">
+
+      <wsdl:part element="impl:changePassword" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="askActiveResponse">
+
+      <wsdl:part element="impl:askActiveResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="askCertResponse">
+
+      <wsdl:part element="impl:askCertResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateRequest">
+
+      <wsdl:part element="impl:update" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="changePasswordResponse">
+
+      <wsdl:part element="impl:changePasswordResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="validateResponse">
+
+      <wsdl:part element="impl:validateResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="loginRequest">
+
+      <wsdl:part element="impl:login" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="askSMSCheckResponse">
+
+      <wsdl:part element="impl:askSMSCheckResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateResponse">
+
+      <wsdl:part element="impl:updateResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="validateRequest">
+
+      <wsdl:part element="impl:validate" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="rigisterResponse">
+
+      <wsdl:part element="impl:rigisterResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="askMailCheckResponse">
+
+      <wsdl:part element="impl:askMailCheckResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="askSMSCheckRequest">
+
+      <wsdl:part element="impl:askSMSCheck" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="loginResponse">
+
+      <wsdl:part element="impl:loginResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="askMailCheckRequest">
+
+      <wsdl:part element="impl:askMailCheck" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="askActiveRequest">
+
+      <wsdl:part element="impl:askActive" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="rigisterRequest">
+
+      <wsdl:part element="impl:rigister" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="askCertRequest">
+
+      <wsdl:part element="impl:askCert" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="EWallet">
+
+      <wsdl:operation name="update">
+
+         <wsdl:input message="impl:updateRequest" name="updateRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:updateResponse" name="updateResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validate">
+
+         <wsdl:input message="impl:validateRequest" name="validateRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:validateResponse" name="validateResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="login">
+
+         <wsdl:input message="impl:loginRequest" name="loginRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:loginResponse" name="loginResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changePassword">
+
+         <wsdl:input message="impl:changePasswordRequest" name="changePasswordRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:changePasswordResponse" name="changePasswordResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="rigister">
+
+         <wsdl:input message="impl:rigisterRequest" name="rigisterRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:rigisterResponse" name="rigisterResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="askMailCheck">
+
+         <wsdl:input message="impl:askMailCheckRequest" name="askMailCheckRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:askMailCheckResponse" name="askMailCheckResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="askSMSCheck">
+
+         <wsdl:input message="impl:askSMSCheckRequest" name="askSMSCheckRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:askSMSCheckResponse" name="askSMSCheckResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="askCert">
+
+         <wsdl:input message="impl:askCertRequest" name="askCertRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:askCertResponse" name="askCertResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="askActive">
+
+         <wsdl:input message="impl:askActiveRequest" name="askActiveRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:askActiveResponse" name="askActiveResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="EWalletSoapBinding" type="impl:EWallet">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="update">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="updateRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="updateResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validate">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="validateRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="validateResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="login">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="loginRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="loginResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changePassword">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="changePasswordRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="changePasswordResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="rigister">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="rigisterRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="rigisterResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="askMailCheck">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="askMailCheckRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="askMailCheckResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="askSMSCheck">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="askSMSCheckRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="askSMSCheckResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="askCert">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="askCertRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="askCertResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="askActive">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="askActiveRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="askActiveResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="EWalletService">
+
+      <wsdl:port binding="impl:EWalletSoapBinding" name="EWallet">
+
+         <wsdlsoap:address location="http://localhost:8080/citygo/services/EWallet"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
